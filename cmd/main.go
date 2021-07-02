@@ -5,7 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/og-zero/go-api-echo/cmd/internal/pkg/configs"
+	"github.com/og-zero/go-api-echo/internal/pkg/configs"
 )
 
 var config = configs.Load()
