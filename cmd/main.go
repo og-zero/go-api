@@ -16,13 +16,28 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Routes
-	e.GET("/", hello)
+	e.GET("/", home)
+	e.GET("/ping", ping)
+	e.GET("/pong", pong)
+	e.GET("/ip", ip)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
-// Handler
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+func home(c echo.Context) error {
+	return c.Redirect(http.StatusTemporaryRedirect, "/ip")
+}
+
+func ping(c echo.Context) error {
+	return c.String(http.StatusOK, "ping")
+}
+
+func pong(c echo.Context) error {
+	return c.String(http.StatusOK, "pong")
+}
+
+func ip(c echo.Context) error {
+	clientIP := c.RealIP()
+	return c.String(http.StatusOK, clientIP)
 }
